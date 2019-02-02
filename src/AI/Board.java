@@ -19,6 +19,8 @@ public class Board {
     }
 
     public void clearGrid(){
+        // +Fill the grid with empty cells (clearing it)
+
         for(int i = 0;i < ROWS; ++i){
             for(int j = 0;j < COLUMNS; ++j){
                 boardGrid[i][j] = Cell.EMPTY;
@@ -27,6 +29,8 @@ public class Board {
     }
 
     public boolean isFull(){
+        // +Check is the board full or not
+
         for(int i = 0;i < ROWS; ++i){
             for(int j = 0;j < COLUMNS; ++j){
                 if(boardGrid[i][j] == Cell.EMPTY)
