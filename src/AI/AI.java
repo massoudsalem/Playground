@@ -6,71 +6,94 @@ public class AI {
      *   insuring their is only one AI player.
      */
 
-    private final int WON_SCORE=100;
-    private final int LOSE_SCORE=-100;
+    private final int WON_SCORE=10;
+    private final int LOSE_SCORE=-10;
     private final int DRAW_SCORE=0;
 
     private static AI player = null;
 
     private AI(){}
 
-    public static AI getInstance(){
+    static AI getInstance(){
         if(player == null)
             player = new AI();
 
         return player;
     }
 
+    public Board playOptimally(Board board){
+        int optimalValue=-1000;
+        int row=0,column=0;
+        for(int i = 0;i < Board.ROWS; ++i){
+            for(int j = 0;j < Board.COLUMNS; ++j){
+
+                if(board.getCell(i,j) == Cell.EMPTY){
+
+                    board.setCell(i,j,Cell.PLAYER2);
+
+                    int currentValue=runMiniMax(board,0,false);
+
+                    board.setCell(i,j,Cell.EMPTY);
+
+                    if (currentValue>optimalValue){
+                        row=i;
+                        column=j;
+                        optimalValue=currentValue;
+                    }
+                }
+            }
+            System.out.println();
+        }
+
+        board.setCell(row,column,Cell.PLAYER2);
+
+        return board;
+    }
+
+    private int score(Cell cell){
+        if(cell == Cell.PLAYER2)
+            return WON_SCORE;
+        else if(cell == Cell.PLAYER1)
+            return LOSE_SCORE;
+        return DRAW_SCORE;
+    }
+
     private int calculateHeuristics(Board board) {
 
         // +Calculating heuristics of the current state.
 
-        for(int i=0; i<Board.ROWS; ++i){
+        for(int i=0; i<Board.ROWS; ++i) {
 
             if(board.getCell(i,0) == board.getCell(i,1)
-                    && board.getCell(i,1) == board.getCell(i,2)){
+                    && board.getCell(i,1) == board.getCell(i,2)
+                    && board.getCell(i,0) != Cell.EMPTY) {
 
-                if(board.getCell(i,0)== Cell.PLAYER2)
-                    return WON_SCORE;
-                else
-                    return LOSE_SCORE;
+                return score(board.getCell(i,0));
 
             }
-        }
 
-        for(int i=0; i<Board.COLUMNS; ++i){
 
             if(board.getCell(0,i) == board.getCell(1,i)
-                    && board.getCell(1,i) == board.getCell(2,i)){
+                    && board.getCell(1,i) == board.getCell(2,i)
+                    && board.getCell(0,i) != Cell.EMPTY){
 
-                if(board.getCell(i,0)== Cell.PLAYER2)
-                    return WON_SCORE;
-                else
-                    return LOSE_SCORE;
-
+                return score(board.getCell(0,i));
             }
         }
 
         if(board.getCell(0,0) == board.getCell(1,1)
-                && board.getCell(1,1) == board.getCell(2,2)){
+                && board.getCell(1,1) == board.getCell(2,2)
+                && board.getCell(0,0) != Cell.EMPTY){
 
-            if(board.getCell(0,0)== Cell.PLAYER2)
-                return WON_SCORE;
-            else
-                return LOSE_SCORE;
-
+            return score(board.getCell(0,0));
         }
 
-        if(board.getCell(0,2) == board.getCell(1,1)
-                && board.getCell(1,1) == board.getCell(2,0)){
+        if(board.getCell(2,0) == board.getCell(1,1)
+                && board.getCell(1,1) == board.getCell(0,2)
+                && board.getCell(2,0) != Cell.EMPTY){
 
-            if(board.getCell(0,0)== Cell.PLAYER2)
-                return WON_SCORE;
-            else
-                return LOSE_SCORE;
-
+            return score(board.getCell(2,0));
         }
-
 
         return DRAW_SCORE;
     }
@@ -84,10 +107,7 @@ public class AI {
 
         int heuristics=calculateHeuristics(board);
 
-        if(heuristics == WON_SCORE)
-            return heuristics;
-
-        if(heuristics == LOSE_SCORE)
+        if(heuristics == WON_SCORE || heuristics == LOSE_SCORE)
             return heuristics;
 
         if(board.isFull())
@@ -96,7 +116,7 @@ public class AI {
         int current;
 
         if (isMaximizer){
-            current = Integer.MIN_VALUE;
+            current = -1000;
 
             for(int i = 0;i < Board.ROWS; ++i){
                 for(int j = 0;j < Board.COLUMNS; ++j){
@@ -112,9 +132,9 @@ public class AI {
                     }
                 }
             }
-
+            return current-depth;
         }else{
-            current = Integer.MAX_VALUE;
+            current = 1000;
 
             for(int i = 0;i < Board.ROWS; ++i){
                 for(int j = 0;j < Board.COLUMNS; ++j){
@@ -130,8 +150,7 @@ public class AI {
                     }
                 }
             }
+            return current+depth;
         }
-
-        return current;
     }
 }
