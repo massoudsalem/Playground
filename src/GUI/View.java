@@ -17,44 +17,14 @@ import javafx.stage.WindowEvent;
 
 public class View extends Application{
 
-   //create a function to set grid to set buttons on
-    private GridPane createGrid(){
-        GridPane grid=new GridPane();
-        grid.setHgap(7);
-        grid.setVgap(7);
-        grid.setAlignment(Pos.CENTER);
+    @Override
+    public void start(Stage primaryStage){
 
-        Button button[]=new Button[9];
+        //Top section
+        HBox topSection = new HBox();
 
-        for(int i=0;i<9;++i){
-
-            button[i]=new Button();
-            button[i].getStyleClass().addAll("center-section");
-            button[i].setId("btn-"+(i+1));
-
-        }
-
-        int curr=0;
-
-        for(int i=0;i<3;++i){
-            for(int j=0;j<3;++j){
-
-                grid.add(button[curr++],j,i);
-
-            }
-        }
-        return grid;
-
-    }
-
-    //A function to create horizontal buttons
-    // to indicate numbers of each element
-    private HBox topSection(){
-
-        HBox hbox = new HBox();
-
-        hbox.setSpacing(10);
-        hbox.setAlignment(Pos.CENTER);
+        topSection.setSpacing(10);
+        topSection.setAlignment(Pos.CENTER);
 
         Label scoreLeft= new Label();
 
@@ -92,18 +62,42 @@ public class View extends Application{
         scoreLeft.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
         scoreRight.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
 
-        hbox.getChildren().addAll(scoreLeft,labelLeft,labelRight,scoreRight);
+        topSection.getChildren().addAll(scoreLeft,labelLeft,labelRight,scoreRight);
 
-        return hbox;
 
-    }
 
-    // Creating function of bottom section
-    private HBox bottomSection(){
-        HBox hBox1=new HBox();
+        //set Grid and buttons
+        GridPane grid=new GridPane();
+        grid.setHgap(7);
+        grid.setVgap(7);
+        grid.setAlignment(Pos.CENTER);
 
-        hBox1.setSpacing(10);
-        hBox1.setAlignment(Pos.CENTER);
+        Button button[]=new Button[9];
+
+        for(int i=0;i<9;++i){
+
+            button[i]=new Button();
+            button[i].getStyleClass().addAll("center-section");
+            button[i].setId("btn-"+(i+1));
+
+        }
+
+        int curr=0;
+
+        for(int i=0;i<3;++i){
+            for(int j=0;j<3;++j){
+
+                grid.add(button[curr++],j,i);
+
+            }
+        }
+
+
+        //Bottom section
+        HBox bottomSection=new HBox();
+
+        bottomSection.setSpacing(10);
+        bottomSection.setAlignment(Pos.CENTER);
 
         Button restartBtn=new Button("Restart");
         Button clearBtn=new Button("Clear score");
@@ -113,19 +107,15 @@ public class View extends Application{
         restartBtn.getStyleClass().add("bottom-btn");
         clearBtn.getStyleClass().add("bottom-btn");
 
-        hBox1.getChildren().addAll(restartBtn,clearBtn);
+        bottomSection.getChildren().addAll(restartBtn,clearBtn);
 
-        return hBox1;
-    }
 
-    //Creating function of Scene
-    private Scene createScene(){
         //separate nodes using VBox
         VBox root = new VBox();
 
         root.setAlignment(Pos.CENTER);
         root.setSpacing(30);
-        root.getChildren().addAll(topSection(),createGrid(),bottomSection());
+        root.getChildren().addAll(topSection,grid,bottomSection);
 
         //Set Dimensions of the scene
         Scene scene=new Scene(root,300,450);
@@ -133,15 +123,9 @@ public class View extends Application{
         //Run and Display scene
         scene.getStylesheets().add("GUI/StyleSheet.css");
 
-        return scene;
-    }
-
-    @Override
-    public void start(Stage primaryStage){
-
 
         //Add scene to the Stage and bind the title text to it
-        primaryStage.setScene(createScene());
+        primaryStage.setScene(scene);
 
         //Action for X button of the window
         primaryStage.setOnCloseRequest((WindowEvent event) ->{
