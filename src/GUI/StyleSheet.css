@@ -1,0 +1,70 @@
+VBox{
+    -fx-background-color: #303A52;
+}
+
+Button.center-section{
+    -fx-pref-width:70px;
+    -fx-pref-height:70px;
+    -fx-background-color: #303A52;
+    -fx-border-color:  #596174;
+    -fx-border-style:Solid outside;
+    -fx-background-radius: 0;
+}
+
+#btn-1,#btn-3,#btn-7,#btn-9,#btn-5{
+    -fx-border-width: 0;
+}
+#btn-2{
+    -fx-border-width: 0 7 7 7;
+}
+#btn-6{
+    -fx-border-width: 7 0 7 7;
+}#btn-4{
+    -fx-border-width: 7 7 7 0;
+}#btn-8{
+    -fx-border-width: 7 7 0 7;
+}
+
+
+.top-section-op{
+    -fx-background-radius:50%;
+    -fx-min-width: 70;
+    -fx-min-height: 70;
+    -fx-background-color: #596174;
+}
+
+
+.top-section-score{
+    -fx-background-radius:60;
+    -fx-pref-width:25;
+    -fx-font-size: 14;
+    -fx-font-family: "roboto";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #596174;
+    -fx-alignment: center;
+}
+
+#current-player{
+    -fx-border-color: white;
+    -fx-border-style: dashed outside;
+    -fx-border-radius: 50;
+    -fx-border-width: 2.5;
+}
+
+.bottom-btn{
+  -fx-background-radius:50;
+    -fx-pref-width:  100;
+    -fx-pref-height: 60;
+    -fx-border-radius: 50;
+    -fx-border-color: white;
+    -fx-border-style: solid inside;
+    -fx-border-width: 0.3;
+    -fx-alignment: center;
+    -fx-background-color: #596174;
+    -fx-font-size: 14;
+    -fx-font-family: "roboto";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
