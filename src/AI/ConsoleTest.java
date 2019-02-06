@@ -20,6 +20,7 @@ public class ConsoleTest {
             System.out.println();
         }
     }
+
     public static void main(String args[]){
         HashMap<Integer,Pair<Integer,Integer>> move=new HashMap<>();
         int x = 0;
@@ -28,8 +29,10 @@ public class ConsoleTest {
                 move.put(++x, new Pair<>(i, j));
             }
         }
+
         AI computer=AI.getInstance();
-        Board board=new Board();
+        Board board= Board.getInstance();
+
         Scanner input=new Scanner(System.in);
         while (!board.isFull()){
             printBoard(board);

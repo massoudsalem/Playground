@@ -5,10 +5,27 @@ public class Board {
     public static final int ROWS=3;
     public static final int COLUMNS=3;
 
-    Board(){
-        boardGrid = new Cell[ROWS][COLUMNS];
-        clearGrid();
+    private static Board board = null;
+
+    private Board(){}
+
+    static Board getInstance(){
+        if(board == null){
+
+            board=new Board();
+
+            board.boardGrid = new Cell[ROWS][COLUMNS];
+
+            for(int i = 0;i < ROWS; ++i){
+                for(int j = 0;j < COLUMNS; ++j){
+                    board.boardGrid[i][j] = Cell.EMPTY;
+                }
+            }
+        }
+
+        return board;
     }
+
 
     public void setCell(int row,int column,Cell cell){
         boardGrid[row][column] = cell;
