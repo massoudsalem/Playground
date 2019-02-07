@@ -4,6 +4,8 @@
 <a href="https://appynation.helpshift.com/a/puzzle-page/?s=puzzle-instructions&f=os-and-xs">
   <img src="https://papergames.io/images/tic-tac-toe/thumbnail.png" alt="tic-tac-toc" style="width:225px;border:0;">
 </a>
+
+
 *Click for more details about the game.*
 
 ## Technolgies used:
