@@ -52,7 +52,7 @@ Button.center-section{
     -fx-border-width: 2.5;
 }
 
-.bottom-btn{
+.btn{
   -fx-background-radius:50;
     -fx-pref-width:  100;
     -fx-pref-height: 60;
@@ -67,4 +67,56 @@ Button.center-section{
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+.btn:hover{
+
+    -fx-border-width: 0.6;
+
+}
+.btn:pressed {
+
+    -fx-background-color: #414958;
+
+}
+
+
+.dialog-pane {
+    -fx-max-width: 250;
+    -fx-background-color: #414958;
+}
+
+.dialog-pane .label {
+    -fx-font-size: 14;
+    -fx-font-family: "roboto";
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+}
+
+.dialog-pane .button{
+    -fx-background-radius:50;
+    -fx-pref-width:  30;
+    -fx-pref-height: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: white;
+    -fx-border-style: solid inside;
+    -fx-border-width: 0;
+    -fx-alignment: center;
+    -fx-background-color: #596174;
+    -fx-font-size: 14;
+    -fx-font-family: "roboto";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.dialog-pane .button:hover{
+
+    -fx-border-width: 0.3;
+
+}
+.dialog-pane .button:pressed {
+
+    -fx-background-color: #414958;
+
+}
+
+
+
 

@@ -3,12 +3,13 @@ package GUI;
 import AI.AI;
 import AI.Board;
 import AI.Cell;
+import AI.GameState;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.InnerShadow;
@@ -20,6 +21,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
 import java.util.HashMap;
+
 
 
 public class View extends Application{
@@ -65,6 +67,23 @@ public class View extends Application{
                     ((Button)gridPane.getChildren().get(idx++)).setGraphic(null);
             }
         }
+    }
+
+    private void showAlert(String title, String msg){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+
+        //adding style
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("StyleSheet.css").toExternalForm());
+
+
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setContentText(msg);
+
+        alert.showAndWait();
     }
 
     @Override
@@ -139,10 +158,22 @@ public class View extends Application{
             button[i].getStyleClass().addAll("center-section");
             button[i].setId("btn-"+(i+1));
             button[i].setOnAction(e -> {
-                Integer y= Integer.parseInt(((Button)e.getSource()).getId().charAt(4)+"")-1;
-                board.setCell(move.get(y).getKey(),move.get(y).getValue(),Cell.PLAYER1);
-                new Thread(new AsyncFindMoveTask()).start();
-                ((Button)e.getSource()).setGraphic(new ImageView("GUI/IMG/x.png"));
+                GameState state=player2.gameState();
+
+                if(player2.gameState() == null) {
+                    ((Button) e.getSource())
+                            .setGraphic(new ImageView("GUI/IMG/x.png"));
+
+                    Integer y = Integer.parseInt(((Button) e.getSource())
+                            .getId().charAt(4) + "") - 1;
+
+                    board.setCell(move.get(y).getKey(),
+                            move.get(y).getValue(), Cell.PLAYER1);
+
+                    new Thread(new AsyncFindMoveTask()).start();
+                }else{
+
+                }
             });
 
         }
@@ -169,8 +200,12 @@ public class View extends Application{
 
         restartBtn.requestFocus();
 
-        restartBtn.getStyleClass().add("bottom-btn");
-        clearBtn.getStyleClass().add("bottom-btn");
+        restartBtn.getStyleClass().add("btn");
+        clearBtn.getStyleClass().add("btn");
+
+        restartBtn.setOnAction(e -> {
+            showAlert("Title","ok?");
+        });
 
         bottomSection.getChildren().addAll(restartBtn,clearBtn);
 

@@ -98,6 +98,23 @@ public class AI {
         return DRAW_SCORE;
     }
 
+    public GameState gameState(){
+
+        int state=calculateHeuristics(Board.getInstance());
+
+        if(state == WON_SCORE)
+            return GameState.WON;
+
+        else if(state == LOSE_SCORE)
+            return GameState.LOSE;
+
+        else if(Board.getInstance().isFull())
+            return GameState.DRAW;
+
+        return null;
+
+    }
+
     private int runMiniMax(Board board, int depth, boolean isMaximizer){
         /*
          * +Running Minimizer Maximizer algorithm.
