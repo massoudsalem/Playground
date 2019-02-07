@@ -1,11 +1,10 @@
 # Tic-Tac-Toe
  Tic-tac-toe, noughts and crosses or Xs and Os, is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game..
- <figure>
+
 <a href="https://appynation.helpshift.com/a/puzzle-page/?s=puzzle-instructions&f=os-and-xs">
   <img src="https://papergames.io/images/tic-tac-toe/thumbnail.png" alt="tic-tac-toc" style="width:225px;border:0;">
 </a>
-<figcaption style="">Click for more details about the game.</figcaption>
-</figure>
+*Click for more details about the game.*
 
 ## Technolgies used:
   - *Java* : Backend (MiniMax Algorithm for the AI).
@@ -19,8 +18,11 @@
   - **Singlatone** : Ensure a class has only one instance, and provide a global point of access to it.
 
 ## Operations 
-###GUI:
+### GUI:
+
+
 <img src="https://i.imgur.com/ZBz2LwN.png" alt="tic-tac-toc" style="width:225px;border:0;">
+
 **Our user interface.**
    1. Controller take an action.
    2. Action sent to backend in AI.
