@@ -13,10 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.InnerShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Pair;
 
@@ -58,14 +60,19 @@ public class View extends Application{
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
 
+        //Remove icon
+        alert.initStyle(StageStyle.UTILITY);
+
         //adding style
         alert.getDialogPane().getStylesheets().add(
                 getClass().getResource("StyleSheet.css").toExternalForm());
 
 
-        // Header Text: null
+        // Header Text: null and inner Icon:null
         alert.setHeaderText(null);
         alert.setGraphic(null);
+
+        //Set msg
         alert.setContentText(msg);
 
         alert.showAndWait();
@@ -183,20 +190,20 @@ public class View extends Application{
 
                 if(state != null){
                     if(state == GameState.LOSE) {
-                        showAlert("Massage box",
-                                "Unfortunately, You lose the game");
+                        showAlert("MessageBox",
+                                "Unfortunately, You lose the game.");
 
                         oScore.setText(""+
                                 (Integer.parseInt(oScore.getText())+1));
                     }
                     else if(state == GameState.WON) {
-                        showAlert("Massage box",
+                        showAlert("MessageBox",
                                 "Congrats, You won the game.");
 
                         xScore.setText(""+
                                 (Integer.parseInt(xScore.getText())+1));
                     }else{
-                        showAlert("Massage box",
+                        showAlert("MessageBox",
                                 "Draw.");
                     }
                     board.clearGrid();
@@ -264,15 +271,21 @@ public class View extends Application{
 
         //Add scene to the Stage and bind the title text to it
         primaryStage.setScene(scene);
-
+        primaryStage.setTitle("Tic-Tac-Toc");
         //Action for X button of the window
         primaryStage.setOnCloseRequest((WindowEvent event) ->{
                 Platform.exit();
                 System.exit(0);
         });
 
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("GUI/IMG/icon.png"));
         primaryStage.show();
 
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     class AsyncFindMoveTask extends Task<Void>{
