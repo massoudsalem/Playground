@@ -11,18 +11,18 @@ public class ConsoleTest {
      * you should find bugs in it ignore them.
      */
 
-    private static void printBoard(Board board){
+    public static void printBoard(Board board){
         for(int i = 0;i < Board.ROWS; ++i) {
             for (int j = 0; j < Board.COLUMNS; ++j) {
                 if(board.getCell(i,j) == Cell.PLAYER1)
-                    System.out.print("O ");
-                else if(board.getCell(i,j) == Cell.PLAYER2)
                     System.out.print("X ");
+                else if(board.getCell(i,j) == Cell.PLAYER2)
+                    System.out.print("O ");
                 else
                     System.out.print("- ");
             }
+            System.out.println();
         }
-         System.out.println();
      }
 
     public static void main(String args[]){
@@ -33,6 +33,7 @@ public class ConsoleTest {
                 move.put(++x, new Pair<>(i, j));
             }
         }
+
 
         AI computer=AI.getInstance();
         Board board= Board.getInstance();

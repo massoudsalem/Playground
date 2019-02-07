@@ -26,7 +26,7 @@ public class AI {
         Board board=Board.getInstance();
 
         int optimalValue=-1000;
-        int row=0,column=0;
+        int row=-1,column=-1;
         for(int i = 0;i < Board.ROWS; ++i){
             for(int j = 0;j < Board.COLUMNS; ++j){
 
@@ -45,10 +45,9 @@ public class AI {
                     }
                 }
             }
-            System.out.println();
         }
-
-        board.setCell(row,column,Cell.PLAYER2);
+        if(!(row == -1))
+            board.setCell(row,column,Cell.PLAYER2);
     }
 
     private int score(Cell cell){
