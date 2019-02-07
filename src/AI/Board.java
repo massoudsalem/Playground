@@ -9,7 +9,7 @@ public class Board {
 
     private Board(){}
 
-    static Board getInstance(){
+    public static Board getInstance(){
         if(board == null){
 
             board=new Board();

@@ -38,7 +38,7 @@ public class ConsoleTest {
             printBoard(board);
             x=input.nextInt();
             board.setCell(move.get(x).getKey(),move.get(x).getValue(),Cell.PLAYER1);
-            board=computer.playOptimally(board);
+            computer.playOptimally();
         }
     }
 }

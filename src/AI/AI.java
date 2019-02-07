@@ -14,14 +14,16 @@ public class AI {
 
     private AI(){}
 
-    static AI getInstance(){
+    public static AI getInstance(){
         if(player == null)
             player = new AI();
 
         return player;
     }
 
-    public Board playOptimally(Board board){
+    public void playOptimally(){
+        Board board=Board.getInstance();
+
         int optimalValue=-1000;
         int row=0,column=0;
         for(int i = 0;i < Board.ROWS; ++i){
@@ -46,8 +48,6 @@ public class AI {
         }
 
         board.setCell(row,column,Cell.PLAYER2);
-
-        return board;
     }
 
     private int score(Cell cell){

@@ -1,7 +1,11 @@
 package GUI;
 
+import AI.AI;
+import AI.Board;
+import AI.Cell;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,12 +17,67 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Pair;
+
+import java.util.HashMap;
 
 
 public class View extends Application{
 
+    private GridPane grid;
+    private AI player2=AI.getInstance();
+    private Board board=Board.getInstance();
+
+    private void printBoard(){
+        for(int i = 0;i < Board.ROWS; ++i) {
+            for (int j = 0; j < Board.COLUMNS; ++j) {
+                if(board.getCell(i,j) == Cell.PLAYER1)
+                    System.out.print("X ");
+                else if(board.getCell(i,j) == Cell.PLAYER2)
+                    System.out.print("O ");
+                else
+                    System.out.print("- ");
+            }
+            System.out.println();
+        }
+    }
+
+    private void updateGrid(GridPane gridPane){
+
+        Board board=Board.getInstance();
+
+        int idx=0;
+
+        for(int i = 0;i < Board.ROWS; ++i) {
+            for (int j = 0; j < Board.COLUMNS; ++j) {
+
+                ImageView x=new ImageView("GUI/IMG/x.png");
+                ImageView o=new ImageView("GUI/IMG/o.png");
+
+                if(board.getCell(i,j) == Cell.PLAYER1)
+                    ((Button)gridPane.getChildren().get(idx++)).setGraphic(x);
+
+
+                else if(board.getCell(i,j) == Cell.PLAYER2)
+                    ((Button)gridPane.getChildren().get(idx++)).setGraphic(o);
+
+                else
+                    ((Button)gridPane.getChildren().get(idx++)).setGraphic(null);
+            }
+        }
+    }
+
     @Override
     public void start(Stage primaryStage){
+
+        //Grid hashmap
+        HashMap<Integer,Pair<Integer,Integer>> move=new HashMap<>();
+        int k = 0;
+        for(int i = 0;i < Board.ROWS; ++i) {
+            for (int j = 0; j < Board.COLUMNS; ++j) {
+                move.put(k++, new Pair<>(i, j));
+            }
+        }
 
         //Top section
         HBox topSection = new HBox();
@@ -67,7 +126,7 @@ public class View extends Application{
 
 
         //set Grid and buttons
-        GridPane grid=new GridPane();
+        grid=new GridPane();
         grid.setHgap(7);
         grid.setVgap(7);
         grid.setAlignment(Pos.CENTER);
@@ -79,6 +138,12 @@ public class View extends Application{
             button[i]=new Button();
             button[i].getStyleClass().addAll("center-section");
             button[i].setId("btn-"+(i+1));
+            button[i].setOnAction(e -> {
+                Integer y= Integer.parseInt(((Button)e.getSource()).getId().charAt(4)+"")-1;
+                board.setCell(move.get(y).getKey(),move.get(y).getValue(),Cell.PLAYER1);
+                new Thread(new AsyncFindMoveTask()).start();
+                ((Button)e.getSource()).setGraphic(new ImageView("GUI/IMG/x.png"));
+            });
 
         }
 
@@ -117,6 +182,7 @@ public class View extends Application{
         root.setSpacing(30);
         root.getChildren().addAll(topSection,grid,bottomSection);
 
+
         //Set Dimensions of the scene
         Scene scene=new Scene(root,300,450);
 
@@ -135,5 +201,16 @@ public class View extends Application{
 
         primaryStage.show();
 
+    }
+
+    class AsyncFindMoveTask extends Task<Void>{
+
+        @Override
+        protected Void call() {
+            player2.playOptimally();
+            printBoard();
+            Platform.runLater(() -> updateGrid(grid));
+            return null;
+        }
     }
 }
