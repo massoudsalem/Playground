@@ -1,6 +1,13 @@
 package AI;
 
 public class Board {
+    /**
+     * +Implemented with Singleton design pattern
+     *   insuring their is only one Board on the game.
+     * +Board contains cells which
+     *   by their turn contains grid values.
+     */
+
     private Cell boardGrid[][];
     public static final int ROWS=3;
     public static final int COLUMNS=3;
@@ -25,7 +32,6 @@ public class Board {
 
         return board;
     }
-
 
     public void setCell(int row,int column,Cell cell){
         boardGrid[row][column] = cell;

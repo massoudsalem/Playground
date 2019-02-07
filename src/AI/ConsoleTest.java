@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class ConsoleTest {
+    /**
+     * This class is only for testing MiniMax
+     * you should find bugs in it ignore them.
+     */
 
-     private static void printBoard(Board board){
+    private static void printBoard(Board board){
         for(int i = 0;i < Board.ROWS; ++i) {
             for (int j = 0; j < Board.COLUMNS; ++j) {
                 if(board.getCell(i,j) == Cell.PLAYER1)
@@ -17,9 +21,9 @@ public class ConsoleTest {
                 else
                     System.out.print("- ");
             }
-            System.out.println();
         }
-    }
+         System.out.println();
+     }
 
     public static void main(String args[]){
         HashMap<Integer,Pair<Integer,Integer>> move=new HashMap<>();

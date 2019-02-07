@@ -4,6 +4,7 @@ public class AI {
     /**
      * +Implemented with Singleton design pattern
      *   insuring their is only one AI player.
+     * +Using MiniMax to play Tic-Tac-Toc.
      */
 
     private final int WON_SCORE=10;
@@ -58,9 +59,11 @@ public class AI {
         return DRAW_SCORE;
     }
 
-    private int calculateHeuristics(Board board) {
+    private int calculateHeuristics() {
 
         // +Calculating heuristics of the current state.
+
+        Board board = Board.getInstance();
 
         for(int i=0; i<Board.ROWS; ++i) {
 
@@ -98,23 +101,6 @@ public class AI {
         return DRAW_SCORE;
     }
 
-    public GameState gameState(){
-
-        int state=calculateHeuristics(Board.getInstance());
-
-        if(state == WON_SCORE)
-            return GameState.WON;
-
-        else if(state == LOSE_SCORE)
-            return GameState.LOSE;
-
-        else if(Board.getInstance().isFull())
-            return GameState.DRAW;
-
-        return null;
-
-    }
-
     private int runMiniMax(Board board, int depth, boolean isMaximizer){
         /*
          * +Running Minimizer Maximizer algorithm.
@@ -122,7 +108,7 @@ public class AI {
          *   and n in height of the tree.
          */
 
-        int heuristics=calculateHeuristics(board);
+        int heuristics=calculateHeuristics();
 
         if(heuristics == WON_SCORE || heuristics == LOSE_SCORE)
             return heuristics;
@@ -169,5 +155,20 @@ public class AI {
             }
             return current+depth;
         }
+    }
+
+    public GameState gameState(){
+        int state=calculateHeuristics();
+
+        if(state == WON_SCORE)
+            return GameState.LOSE;
+
+        else if(state == LOSE_SCORE)
+            return GameState.WON;
+
+        else if(Board.getInstance().isFull())
+            return GameState.DRAW;
+
+        return null;
     }
 }

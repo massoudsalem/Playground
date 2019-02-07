@@ -1,8 +1,8 @@
 package AI;
 
 public enum GameState {
-    WON(100),
-    LOSE(-100),
+    WON(10),
+    LOSE(-10),
     DRAW(0);
 
     int value;

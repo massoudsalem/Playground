@@ -30,23 +30,8 @@ public class View extends Application{
     private AI player2=AI.getInstance();
     private Board board=Board.getInstance();
 
-    private void printBoard(){
-        for(int i = 0;i < Board.ROWS; ++i) {
-            for (int j = 0; j < Board.COLUMNS; ++j) {
-                if(board.getCell(i,j) == Cell.PLAYER1)
-                    System.out.print("X ");
-                else if(board.getCell(i,j) == Cell.PLAYER2)
-                    System.out.print("O ");
-                else
-                    System.out.print("- ");
-            }
-            System.out.println();
-        }
-    }
-
     private void updateGrid(GridPane gridPane){
 
-        Board board=Board.getInstance();
 
         int idx=0;
 
@@ -89,7 +74,7 @@ public class View extends Application{
     @Override
     public void start(Stage primaryStage){
 
-        //Grid hashmap
+        //Grid HashMap
         HashMap<Integer,Pair<Integer,Integer>> move=new HashMap<>();
         int k = 0;
         for(int i = 0;i < Board.ROWS; ++i) {
@@ -104,47 +89,50 @@ public class View extends Application{
         topSection.setSpacing(10);
         topSection.setAlignment(Pos.CENTER);
 
-        Label scoreLeft= new Label();
+        Label xScore= new Label();
 
-        Label labelLeft = new Label();
-        Label labelRight = new Label();
+        Label xImgLabel = new Label();
+        Label oImgLabel = new Label();
 
-        Label scoreRight = new Label();
+        Label oScore = new Label();
 
         ImageView x=new ImageView("GUI/IMG/x.png");
         ImageView o=new ImageView("GUI/IMG/o.png");
 
+
+        //Adding labels properties.
         x.setFitWidth(50);
         x.setFitHeight(50);
 
         o.setFitWidth(60);
         o.setFitHeight(60);
 
-        labelLeft.setAlignment(Pos.CENTER);
-        labelRight.setAlignment(Pos.CENTER);
+        xImgLabel.setAlignment(Pos.CENTER);
+        oImgLabel.setAlignment(Pos.CENTER);
 
-        labelLeft.setGraphic(x);
-        labelRight.setGraphic(o);
+        xImgLabel.setGraphic(x);
+        oImgLabel.setGraphic(o);
 
-        labelLeft.getStyleClass().add("top-section-op");
-        labelRight.getStyleClass().add("top-section-op");
+        xImgLabel.getStyleClass().add("top-section-op");
+        oImgLabel.getStyleClass().add("top-section-op");
 
-        labelLeft.setId("current-player");
+        xImgLabel.setId("current-player");
 
-        scoreLeft.getStyleClass().add("top-section-score");
-        scoreRight.getStyleClass().add("top-section-score");
+        xScore.getStyleClass().add("top-section-score");
+        oScore.getStyleClass().add("top-section-score");
 
-        scoreLeft.setText("0");
-        scoreRight.setText("0");
+        xScore.setText("0");
+        oScore.setText("0");
 
-        scoreLeft.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
-        scoreRight.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
+        xScore.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
+        oScore.setEffect(new InnerShadow(BlurType.THREE_PASS_BOX, Color.BLACK,4,0,0,0));
 
-        topSection.getChildren().addAll(scoreLeft,labelLeft,labelRight,scoreRight);
+        //Stick components to
+        topSection.getChildren().addAll(xScore,xImgLabel,oImgLabel,oScore);
 
 
 
-        //set Grid and buttons
+        //Creating Tic-Tac-Toc grid
         grid=new GridPane();
         grid.setHgap(7);
         grid.setVgap(7);
@@ -158,22 +146,63 @@ public class View extends Application{
             button[i].getStyleClass().addAll("center-section");
             button[i].setId("btn-"+(i+1));
             button[i].setOnAction(e -> {
-                GameState state=player2.gameState();
 
-                if(player2.gameState() == null) {
-                    ((Button) e.getSource())
-                            .setGraphic(new ImageView("GUI/IMG/x.png"));
+                /*
+                 * +If the cell occupied do nothing.
+                 * +Set cell graphic "image" to X.
+                 * +Parse button number.
+                 *   and Set Cell occupied in the board obj.
+                 * +Run a background thread to get the AI Move
+                 *   and wait till it update board obj.
+                 * +Someone win (which is the AI BTW) or draw
+                 *   MsgBox a state of the game and update score.
+                 */
 
-                    Integer y = Integer.parseInt(((Button) e.getSource())
-                            .getId().charAt(4) + "") - 1;
+                Button me=(Button)e.getSource();
 
-                    board.setCell(move.get(y).getKey(),
+                if(me.getGraphic()!=null)
+                    return;
+
+
+                me.setGraphic(new ImageView("GUI/IMG/x.png"));
+
+                Integer y = Integer.parseInt(me.getId().charAt(4) + "") - 1;
+                board.setCell(move.get(y).getKey(),
                             move.get(y).getValue(), Cell.PLAYER1);
 
-                    new Thread(new AsyncFindMoveTask()).start();
-                }else{
 
+                Thread findMove= new Thread(new AsyncFindMoveTask());
+                findMove.start();
+                try {
+                    findMove.join();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
+
+                GameState state = player2.gameState();
+
+                if(state != null){
+                    if(state == GameState.LOSE) {
+                        showAlert("Massage box",
+                                "Unfortunately, You lose the game");
+
+                        oScore.setText(""+
+                                (Integer.parseInt(oScore.getText())+1));
+                    }
+                    else if(state == GameState.WON) {
+                        showAlert("Massage box",
+                                "Congrats, You won the game.");
+
+                        xScore.setText(""+
+                                (Integer.parseInt(xScore.getText())+1));
+                    }else{
+                        showAlert("Massage box",
+                                "Draw.");
+                    }
+                    board.clearGrid();
+                    updateGrid(grid);
+                }
+
             });
 
         }
@@ -204,7 +233,16 @@ public class View extends Application{
         clearBtn.getStyleClass().add("btn");
 
         restartBtn.setOnAction(e -> {
-            showAlert("Title","ok?");
+            board.clearGrid();
+            updateGrid(grid);
+            showAlert("Restart","Grid is cleared but score is still.");
+        });
+        clearBtn.setOnAction(e -> {
+            board.clearGrid();
+            updateGrid(grid);
+            xScore.setText("0");
+            oScore.setText("0");
+            showAlert("Restart","Score is cleared.");
         });
 
         bottomSection.getChildren().addAll(restartBtn,clearBtn);
@@ -221,9 +259,8 @@ public class View extends Application{
         //Set Dimensions of the scene
         Scene scene=new Scene(root,300,450);
 
-        //Run and Display scene
+        //Adding the CSS Stylesheet
         scene.getStylesheets().add("GUI/StyleSheet.css");
-
 
         //Add scene to the Stage and bind the title text to it
         primaryStage.setScene(scene);
@@ -243,7 +280,6 @@ public class View extends Application{
         @Override
         protected Void call() {
             player2.playOptimally();
-            printBoard();
             Platform.runLater(() -> updateGrid(grid));
             return null;
         }
