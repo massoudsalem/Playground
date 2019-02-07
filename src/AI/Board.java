@@ -3,7 +3,7 @@ package AI;
 public class Board {
     /**
      * +Implemented with Singleton design pattern
-     *   insuring their is only one Board on the game.
+     *   insuring there is only one Board on the game.
      * +Board contains cells which
      *   by their turn contains grid values.
      */

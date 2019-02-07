@@ -3,7 +3,7 @@ package AI;
 public class AI {
     /**
      * +Implemented with Singleton design pattern
-     *   insuring their is only one AI player.
+     *   insuring there is only one AI player.
      * +Using MiniMax to play Tic-Tac-Toc.
      */
 
