@@ -23,14 +23,17 @@
 ### GUI:
 
 
-<img src="https://i.imgur.com/ZBz2LwN.png" alt="tic-tac-toc" style="width:225px;border:0;">
+![](https://i.imgur.com/vr27M6e.gif)
+
+![](https://i.imgur.com/PDuB40W.gif)
+
 
 **Our user interface.**
    1. Controller take an action.
    2. Action sent to backend in AI.
    3. Backend is Called through Threads.
-   4. Through view we can react with AI where it could be 
-   Used board object to be control adding elements and icons  to the grid,
+   4. Through view we can react with AI,SO in View we could 
+   Use board object to control adding elements and icons  to the grid,
    whenever Gridpane used to add buttons to set elements on,So we used 
    function updateGrid to binding board with grid,
     also we bind AI backend with labels which scores stricks on,restart and clear buttons.
