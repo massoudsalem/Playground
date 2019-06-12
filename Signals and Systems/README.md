@@ -1,7 +1,7 @@
 # Digital signal processing
 Digital signal processing (DSP) is the use of digital processing, such as by computers or more specialized digital signal processors, to perform a wide variety of signal processing operations.
 
-<a href="https://en.wikipedia.org/wiki/Numerical_analysis">
+<a href="https://en.wikipedia.org/wiki/Digital_signal_processing">
 <img src="https://ocw.mit.edu/resources/res-6-008-digital-signal-processing-spring-2011/res-6-008s11.jpg" alt="Numerical analysis" style="width:225px;border:0;">
 </a>
 
