@@ -25,6 +25,7 @@
    7. Simpson's rule.
 
 **An introduction to *NumPy* and *SymPy* notebooks is implemented**
+Presentation (prepared by khaled mahmoud):https://prezi.com/view/9A4F6CRI79ULkrxuR6GO/
 
 *Note:*
 This methods was implemented in a numerical methods workshop under the supervision of my mathematics professor in collage _I was assigned to code and explain them to my colleagues._
