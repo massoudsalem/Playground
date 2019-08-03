@@ -1,0 +1,29 @@
+.puzzle-buttons{
+    -fx-pref-width:58px;
+    -fx-pref-height:58px;
+    -fx-background-color: #FE2E63;
+    -fx-border-color:  #252A34;
+    -fx-border-width: 1;
+    -fx-border-style:Solid inside;
+    -fx-background-radius: 0;
+}
+#puzzle-pane {
+    -fx-background-color: #E9E9E9;
+    -fx-border-style: solid outside;
+    -fx-border-color:  #252A34;
+    -fx-border-width: 2;
+    -fx-border-style: dashed outside;
+    -fx-border-width: 3;
+    -fx-border-color: #3FA9F5;
+}
+#bg{
+    -fx-background-color:  #252A34;
+}
+.Buttons{
+    -fx-background-color: #08D8D5;
+    -fx-border-style: dashed inside;
+    -fx-border-color:  #E9E9E9;
+    -fx-border-width: 2;
+    -fx-padding: 2;
+    -fx-background-radius: 0;
+}
