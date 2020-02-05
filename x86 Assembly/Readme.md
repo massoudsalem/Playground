@@ -1,14 +1,15 @@
 # x86 Assembly
-This was our Microprocessors course project, In course we have learned basic x86 assembly but we decided to dig deeper and learn irvine32 library and some other out of the course content as a self-study, so we can make things like dynamic allocation to make a good final project of course.
+This was our Microprocessors course project, In course we have learned basic x86 assembly but we decided to dig deeper in learning irvine32 library and some other out of the course content as a self-study, so we can make things like dynamic allocation to make a good final project of course.
 
 ### LinkedList:
 
-A linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes that together represent a sequence. In its most basic form, each node contains data and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. We coded heap basic heap functionality `insert`, `delete`, `delete_last`, `insert_after`, `delete_first`, `insert_last`, `insert_first` and `display_list` After implementing Linkedlist we decide to restrict its functionality to stack and queue data structures where LIFO and FIFO methods of data processing are used for more details you can see their codes on :
+A linked list is a linear collection of data elements, whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes that together represent a sequence. In its most basic form, each node contains data and a reference (in other words, a link) to the next node in the sequence. This structure allows for efficient insertion or removal of elements from any position in the sequence during iteration. We coded LinkedList basic functionalities `insert`, `delete`, `delete_last`, `insert_after`, `delete_first`, `insert_last`, `insert_first` and `display_list`. After implementing Linkedlist we decide to restrict its functionality to stack and queue data structures where LIFO and FIFO methods of data processing are used for more details you can see their codes on :
 [Shimaa's Assembly projects]( https://github.com/shimaahamdy/college-projects/tree/master/assemply%20project )
 ##### Coded by :
 > *  Mohammad Massoud : [@massoudsalem]( https://github.com/massoudsalem )
 > * Shimaa Hamdy : [@shimaahamdy]( https://github.com/shimaahamdy )
 
+---
 
 ### Heap :
 A Heap is a special Tree-based data structure in which the tree is a complete binary tree. Generally, Heaps can be of two types:
@@ -23,6 +24,8 @@ We coded heap basic heap functionality `insert`, `remove` and `top`. In the prog
 > * Mohammad Ashraf : [@elhedeq]( https://github.com/elhedeq )
 > * Shimaa Hamdy : [@shimaahamdy]( https://github.com/shimaahamdy )
 > * Hadeer Mohammad : [@HadeerOsman]( https://github.com/HadeerOsman )
+
+---
 
 ### Stepper Motor controlling :
 Control a Stepper Motor with a microcontroller using assembly language.
