@@ -34,7 +34,7 @@ Showing its rotating degree in 4 *7-segments* and using a *4x4-keypad* to input 
 For more details, code and simulation file you can visit [Ahmed's mircopressors projects](https://github.com/Ahmed-Hafez/College/tree/master/Microprocessors/ControllingStepper)
 ##### Coded by :
 > * Omar Ali : [@OmarAli3]( https://github.com/OmarAli3 )
-> * Ahmed Hafez : [@Ahmed-Hafez3]( https://github.com/Ahmed-Hafez3 )
+> * Ahmed Hafez : [@Ahmed-Hafez3]( https://github.com/Ahmed-Hafez )
 
 ---
 
