@@ -9,7 +9,7 @@ A project for having an experience with x86 assembly of 3 parts 1. LinkedList 2.
 > * Shimaa Hamdy : [@shimaahamdy]( https://github.com/shimaahamdy )
 > * Mohammad Ashraf : [@elhedeq]( https://github.com/elhedeq )
 > * Omar Ali : [@OmarAli3]( https://github.com/OmarAli3 )
-> * Ahmed Hafez : [@Ahmed-Hafez3]( https://github.com/Ahmed-Hafez3 )
+> * Ahmed Hafez : [@Ahmed-Hafez]( https://github.com/Ahmed-Hafez )
 > * Hadeer Mohammad : [@HadeerOsman]( https://github.com/HadeerOsman )
 
 ---
