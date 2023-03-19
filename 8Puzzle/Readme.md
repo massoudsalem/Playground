@@ -8,7 +8,7 @@ by making sliding moves that use the empty space.
 For more information [Click here](https://en.wikipedia.org/wiki/15_puzzle)
 ,also for Playing the game by yourself [8-puzzle](https://murhafsousli.github.io/8puzzle/#/)
 ## Built with
-  - *Java* : Backend (MiniMax Algorithm for the AI).
+  - *Java* : Backend (Astar and BFS Algorithm for the AI).
   - *JavaFX* : Frontend (All GUI and threads).
   - *CSS* : Styling the UI.
   - *Adobe Illustrutor* : Desgin images and icons.
