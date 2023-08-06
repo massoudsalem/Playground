@@ -1,0 +1,174 @@
+/* solutions for the flexbox game at flexboxfroggy.com */
+
+/* q1 */
+#pond {
+  display: flex;
+    justify-content: flex-end;
+}
+
+/* q2 */
+#pond {
+  display: flex;
+    justify-content: center;
+}
+
+/* q3 */
+#pond {
+  display: flex;
+    justify-content: space-around;
+}
+
+/* q4 */
+#pond {
+  display: flex;
+    justify-content: space-between;
+}
+
+/* q5 */
+#pond {
+  display: flex;
+    align-items: flex-end;
+}
+
+/* q6 */
+#pond {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* q7 */
+#pond {
+  display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+/* q8 */
+#pond {
+  display: flex;
+    flex-direction: row-reverse;
+}
+
+/* q9 */
+#pond {
+  display: flex;
+    flex-direction: column;
+}
+
+/* q10 */
+#pond {
+  display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+/* q11 */
+#pond {
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* q12 */
+#pond {
+  display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+
+/* q13 */
+#pond {
+  display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* q14 */
+#pond {
+  display: flex;
+}
+
+.yellow {
+    order: 1;
+}
+
+/* q15 */
+#pond {
+  display: flex;
+}
+
+.red {
+    order: -2;
+}
+
+/* q16 */
+#pond {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yellow {
+    align-self: flex-end
+}
+
+/* q17 */
+#pond {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yellow {
+    order: 2;
+    align-self: flex-end; 
+}
+
+/* q18 */
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* q19 */
+#pond {
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/* q20 */
+#pond {
+  display: flex;
+    flex-flow: column wrap;
+}
+
+/* q21 */
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+/* q22 */
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+    align-content: flex-end;
+}
+
+/* q23 */
+#pond {
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: column-reverse;
+    align-content: center;
+}
+
+/* q24 */
+#pond {
+  display: flex;
+    flex-flow: column-reverse wrap-reverse;
+    align-content: space-between;
+    justify-content: center;
+}
